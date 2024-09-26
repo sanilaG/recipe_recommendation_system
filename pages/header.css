@@ -1,0 +1,110 @@
+body {
+    margin: 0; /* Remove default body margin */
+    padding: 0;
+ /* Optional: Remove default body padding */
+    
+}
+
+.wrapper {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    height: 140px; /* Adjust height as needed */
+    margin-top: 0;
+    padding: 0;
+    margin-right: 0;
+}
+
+header {
+    background: linear-gradient(to left bottom, #67b26f, #4ca2cd);
+    width: 100%;
+}
+
+.logo {
+    text-align: center; /* Center text in the logo div */
+    padding: 20px 0; /* Adjust padding as needed */
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 50px;
+    letter-spacing: 0.35em;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-shadow:
+        -1px 1px 0 black,
+        -2px 2px 0 black,
+        -3px 3px 0 #00A878,
+        -4px 4px 0 black,
+        -5px 5px 0 black;
+    margin: 0 0 10px 0;
+}
+
+.tagline {
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    color: white;
+}
+
+/* Navbar styles */
+nav {
+    display: flex;
+    justify-content: center; /* Center the navbar */
+    margin-bottom: 25px;
+}
+
+nav ul {
+    list-style: none; /* Removes bullets from the list */
+    display: flex; /* Align items in a row */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 80px; /* Space between nav items */
+}
+
+nav ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color:black; /* Text color for links */
+    font-size: 20px; 
+    justify-content: center;/* Adjust font size */
+    text-transform: uppercase;
+    font-weight: bold; /* Make the text bold */
+    letter-spacing: 0.2em; /* Add spacing between letters */
+}
+
+nav ul li a:hover {
+    color: white; /* Change color on hover */
+}
+
+
+footer {
+    background: linear-gradient(to right, #67b26f, #4ca2cd);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+footer nav ul li {
+    margin: 0 15px;
+}
+
+footer nav ul li a {
+    color: white;
+}

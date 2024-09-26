@@ -1,0 +1,436 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+  }
+  * {
+    scroll-behavior: smooth;
+  }
+  html{
+    background-color: #d6d6d6;
+  }
+  
+  .dashboard {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+  }
+  
+  /* Style links on mouse-over */
+  
+  /* Style the main content */
+  section.main{
+    width: 100%;
+  }
+  
+  .right-upper {
+      display: flex;
+      justify-content: right;
+      width: 100%;
+      height: 70px;
+      flex-wrap: wrap;
+      align-items: center;
+      background-color:#f3eeee;
+  }
+  
+  .right-lower {
+    height: 900px;
+    overflow: auto;
+  }
+  
+  .profile .avatar{
+            vertical-align: middle;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+  }
+  /* Style sidebar links */
+  .icon1{
+    margin: 0 0 0 25px;
+  }
+  
+  .icon1 img{
+    width: 100px;
+    height: 90px;
+    margin-top: 15px;
+    margin-left: 50px;
+  }
+  
+  .right_about{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 60px;
+    margin: 0 55px 0 0;
+  }
+  
+  .right_about div p{
+    color: #d14b12;
+    font-family: 'century gothic', sans-serif;
+    font-weight: 600;
+    margin: 0 20px 0 0;
+  }
+  
+  .profile{
+    margin: 0 25px 0 0;
+  }
+  
+  .logout_btn{
+    border-radius: 30%;
+    border-style: none;
+    background-color: #F85151;
+    text-align: center;
+    padding-left: 8px;
+  }
+  
+  .logout_btn:hover {
+    background: #7CB9E8;
+    transition: .3s;
+  }
+  
+  .logout_btn a {
+    color: #ffffff;
+    align-items: center;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    margin: 0 0 0 47px;
+    width: 35px;
+  }
+  
+  .icon-button:hover {
+    color: #999;
+  }
+  
+  .td-container {
+    /* position: relative; */
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+  }
+  
+  /* sidebar starts ------------------------------------------------------------------------------------------ */
+  #sidebar {
+    width: 280px;
+    height: 100vh;
+    background: #333;
+    z-index: 1;
+    font-family: var(--lato);
+    transition: .3s ease;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+  
+  #sidebar::--webkit-scrollbar {
+    display: none;
+  }
+  
+  #sidebar.hide {
+    width: 60px;
+  }
+  
+  
+  #sidebar .side-menu.top {
+    width: 100%;
+    
+  }
+  #sidebar .side-menu.top li.active a{
+    background-color: red;
+    color: red;
+  }
+  #sidebar .side-menu{
+  margin-top: 48px;
+  }
+  
+  #sidebar .side-menu li {
+    height: 48px;
+    background: transparent;
+    margin-left: 6px;
+    border-radius: 48px 0 0 48px;
+    padding: 4px;
+  }
+  
+  #sidebar .side-menu li.active {
+    background: var(--grey);
+    position: relative;
+  }
+  
+  #sidebar .side-menu li.active::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: -40px;
+    right: 0;
+    box-shadow: 20px 20px 0 var(--grey);
+    z-index: -1;
+  }
+  
+  #sidebar .side-menu li.active::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: -40px;
+    right: 0;
+    box-shadow: 20px -20px 0 var(--grey);
+    z-index: -1;
+  }
+  
+  #sidebar .side-menu li a {
+    width: 100%;
+    height: 100%;
+    background: #130d0d;
+    display: flex;
+    align-items: center;
+    border-radius: 48px;
+    font-size: 16px;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-decoration: none;
+  }
+  #sidebar .side-menu li a:hover{
+    background-color: black;
+    color: rgb(255, 150, 0);
+  }
+  #sidebar .side-menu.top li.active a {
+    color: #ffffff;
+  }
+  
+  #sidebar.hide .side-menu li a {
+    width: calc(48px - (4px * 2));
+    transition: width .3s ease;
+  }
+  
+  #sidebar .side-menu li a.logout {
+    color: #ffffff;
+  }
+  
+  #sidebar .side-menu li a.logout:hover {
+    color: #ff0000;
+  }
+  
+   #sidebar .side-menu.top li a:hover {
+    color: rgb(255, 150, 0);
+  }
+  
+  #sidebar .side-menu li a .bx {
+    min-width: calc(60px - ((4px + 6px) * 2));
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Box information starts ---------------------------------------------------------------------------- */
+  
+  .box-info{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .box-info li{
+    background-color: #dddddd;
+    padding: 12px;
+    margin: 50px;
+    border-radius: 100px;
+    box-shadow: 0px 0px 20px #aaaaaa;
+    display: flex; /* Updated to use flexbox */
+    align-items: center; /* Vertically center the content */
+    display: inline-block;
+    width: 275px;
+    height: 160px;
+    position: relative;
+  }
+  
+  .box-info li::before {
+    content: "";
+    width: 100px; /* Adjust the size of the circle as needed */
+    height: 100px; /* Adjust the size of the circle as needed */
+    border-radius: 50%;
+    background-color: #d8d8d8;
+    box-shadow: 0px 0px 20px #999;
+    position: absolute;
+    left: 30px; /* Position the circle at the horizontal center of the box */
+    transform: translateX(-50%); /* Adjust the horizontal centering */
+    top: 50%; /* Position the circle at the vertical center of the box */
+    transform: translateY(-50%); /* Adjust the vertical centering */
+  }
+  
+  .box-info li .bx-icon{
+    position: absolute;
+    top: 12%;
+    right: 12%;
+    font-size: 29px;
+  }
+  
+  .box-info li span {
+    width: 100%; /* Ensures the span takes up the full width */
+    text-align: center;
+  }
+  
+  .box-info li span::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%); /* Move the heading to the center of the circle */
+  }
+  
+  .box-info li span h3 {
+    font-family: Helvetica;
+    font-size: 60px;
+    text-align: center;
+    color: #ff661d;
+    position: absolute;
+    top: 50%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    z-index: 1;
+  }
+  
+  .box-info li span p{
+    font-size: 25px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    margin-top: 10px;
+    line-height: 30px;
+    text-align: center; /* Update to align the text to the right */
+    position: relative;
+    padding-top: 15px;
+    left: 25%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+  }
+  
+  /* Box information ends ---------------------------------------------------------------------------- */
+  
+  /* Table Part Starts ------------------------------------------------------------------------------- */
+  .admin-table {
+    margin: 20px auto; /* Center the table horizontally and add margin to prevent touching the side bar */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .admin-table h2 {
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 30px;
+    color: #000;
+    margin-bottom: 50px;
+  }
+  
+  .admin-table .table {
+    width: auto;
+    border-collapse: collapse;
+    table-layout: auto; /* Prevent the table from expanding based on content */
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    font-family: 'Century Gothic', sans-serif;
+    padding: 13px 40px;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    position: relative; /* Add position relative to the table cells */
+  }
+  
+  .admin-table th {
+    font-size: 22px;
+    font-family: 'Century Gothic', sans-serif;
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .admin-table td {
+    font-size: 20px;
+    font-weight: 500;
+    padding-top: 10px; /* Add spacing above table cell content */
+  }
+  
+  .admin-table td a button {
+    font-family: 'Century Gothic', sans-serif;
+    font-style: oblique;
+    font-size: 14px;
+    padding: 7px 15px;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .admin-table td a .button-edit {
+    background-color: #ff8800;
+  }
+  
+  .admin-table td a .button-edit:hover {
+    background-color: #e67300;
+  }
+  
+  .admin-table td a .button-update {
+    background-color: #00dd00;
+  }
+  
+  .admin-table td a .button-update:hover {
+    background-color: #00bb00;
+  }
+  
+  .admin-table td a .button-approve {
+    background-color: #00dd00;
+  }
+  
+  .admin-table td a .button-approve:hover {
+    background-color: #00aa00;
+  }
+  
+  .admin-table td a .button-delete {
+    background-color: #ff0000;
+  }
+  
+  .admin-table td a .button-delete:hover {
+    background-color: #cc0000;
+  }
+  
+  .create-button {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .button-create {
+    font-family: 'Century Gothic', sans-serif;
+    font-style: oblique;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0000ee;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .button-create:hover {
+    background-color: #0000bb;
+  }
+  
+  /* Table Part Ends ------------------------------------------------------------------------------- */

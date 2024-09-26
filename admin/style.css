@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.admin-panel {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: maroon;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.stat {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.quick-links, .recent-activity {
+    margin: 20px 0;
+}
+
+.quick-links ul, .recent-activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quick-links a, .recent-activity a {
+    text-decoration: none;
+    color: maroon;
+}
+
+.quick-links a:hover, .recent-activity a:hover {
+    text-decoration: underline;
+}
+
+.logout {
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top:10px; /* Add some space below the logout link */
+}
+.logout a {
+    padding: 10px 20px;
+    background-color: maroon;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.logout a:hover {
+    background-color: darkred;
+}

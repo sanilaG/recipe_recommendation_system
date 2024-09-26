@@ -1,0 +1,155 @@
+/* General settings */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-panel {
+    max-width: 1200px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.stat {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    width: 30%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat h2 {
+    margin-bottom: 10px;
+}
+
+.stat p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Quick Links */
+.quick-links {
+    margin-bottom: 40px;
+}
+
+.quick-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.quick-links li {
+    margin: 10px 0;
+}
+
+.quick-links a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+.quick-links a:hover {
+    color: #0056b3;
+}
+
+/* Recent Activity */
+.recent-activity {
+    margin-bottom: 40px;
+}
+
+.recent-activity ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recent-activity li {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.recent-activity a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+}
+
+.recent-activity span {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Recommendation Metrics */
+.recommendation-metrics .metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.recommendation-metrics h3 {
+    color: #333;
+    margin-top: 30px;
+}
+
+.metrics ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.metrics li {
+    margin: 5px 0;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .metrics {
+        flex-direction: column;
+    }
+}
