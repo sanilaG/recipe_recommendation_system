@@ -1,5 +1,6 @@
+<?php include 'indexheader.php'; ?>
 <?php
-session_start();
+
 $host = 'localhost';
 $dbName = 'recipe_recommendation';
 $username = 'root';
@@ -49,6 +50,49 @@ if ($recipeId) {
     <title><?php echo htmlspecialchars($recipe['recipe_name']); ?></title>
     <link rel="stylesheet" href="../css/recipe.css">
 </head>
+<style>/* Grid container for recommendation items */
+.recommendation-grid {
+    display: flex;
+    flex-direction: row; /* Ensure items are laid out horizontally */
+    gap: 20px; /* Space between the items */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 10px;
+    white-space: nowrap; /* Prevent line wrapping */
+}
+
+/* Each item in the grid */
+.recommendation-item {
+    flex: 0 0 auto; /* Prevent items from shrinking or growing */
+    width: 250px; /* Set a fixed width for each item */
+    text-align: center;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: inline-block; /* Inline block to prevent wrapping */
+}
+
+/* Ensure image within recommendation item is responsive */
+.recommendation-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .recommendation-item {
+        width: 200px; /* Smaller width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .recommendation-item {
+        width: 150px; /* Further adjustment for mobile screens */
+    }
+}
+</style>
 <body>
 
 <div class="recipe-container">
@@ -106,7 +150,6 @@ if ($recipeId) {
         <p>No comments yet.</p>
     <?php endif; ?>
 </div>
-
 <div class="recommendations">
     <h2>You Might Also Like</h2>
     <div class="recommendation-grid">

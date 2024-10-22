@@ -23,22 +23,22 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="../users/index.php">Home</a></li>
                 <li><a href="../pages/recipes.php">All&nbsp;Recipes</a></li>
                 <li><a href="../admin/add_recipe.php">Add recipe</a></li>
                 <li><a href="../pages/categories.php">Categories</a></li>
                 <li><a href="aboutus.php">About&nbsp;Us</a></li>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="profile-info">
-                        <a href="dashboard.php">
+                        <a href="../users/dashboard.php">
                             <div class="profile-container">
                                 <!-- Check if profile picture path is correct -->
-                                <img src="images/<?php echo htmlspecialchars($profilePicture); ?>" alt="Profile Image" class="profile-image" onclick="toggleDropdown()" width="50" height="50">
+                                <img src="../users/images/<?php echo htmlspecialchars($profilePicture); ?>" alt="Profile Image" class="profile-image" onclick="toggleDropdown()" width="50" height="50">
                             </div>
                         </a>
                     </li>
                 <?php else: ?>
-                    <li><a href="login.php">Login</a></li>
+                    <li><a href="../users/login.php">Login</a></li>
                 <?php endif; ?>
             </ul>
         </nav>

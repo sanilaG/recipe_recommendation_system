@@ -14,7 +14,7 @@ try {
         FROM recipes 
         WHERE total_reviews > 0 
         ORDER BY average_rating DESC, total_reviews DESC 
-        LIMIT 5
+        LIMIT 10
     ");
     $stmt->execute();
     $popularRecipes = $stmt->fetchAll(PDO::FETCH_ASSOC);

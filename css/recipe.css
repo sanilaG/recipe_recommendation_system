@@ -1,107 +1,42 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
+/* Grid container for recommendation items */
+.recommendation-grid {
+    display: flex;
+    flex-direction: row; /* Ensure items are laid out horizontally */
+    gap: 20px; /* Space between the items */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 10px;
+    white-space: nowrap; /* Prevent line wrapping */
 }
 
-.recipe-container {
-    max-width: 800px;
-    margin: 30px auto;
+/* Each item in the grid */
+.recommendation-item {
+    flex: 0 0 auto; /* Prevent items from shrinking or growing */
+    width: 250px; /* Set a fixed width for each item */
+    text-align: center;
     background: white;
+    border: 1px solid #eee;
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: inline-block; /* Inline block to prevent wrapping */
 }
 
-h1 {
-    color: #2c3e50;
-    font-size: 2.5em;
-    margin-bottom: 15px;
-}
-
-h2, h3 {
-    color: #2980b9;
-}
-
-img {
-    width: 100%;
+/* Ensure image within recommendation item is responsive */
+.recommendation-item img {
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 15px;
 }
 
-p {
-    line-height: 1.6;
-    margin-bottom: 15px;
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .recommendation-item {
+        width: 200px; /* Smaller width on smaller screens */
+    }
 }
 
-.star-rating {
-    display: flex;
-    direction: row-reverse;
-    font-size: 24px;
-    margin: 10px 0;
-}
-
-.star-rating label {
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.star-rating input:checked ~ label,
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-    color: gold;
-}
-
-textarea {
-    width: 100%;
-    height: 80px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    resize: none;
-    transition: border-color 0.3s;
-}
-
-textarea:focus {
-    border-color: #2980b9;
-    outline: none;
-}
-
-button {
-    background-color: #2980b9;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #1a6b99;
-}
-
-.comment {
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
-}
-
-.comment h4 {
-    margin: 0;
-    font-size: 1.2em;
-}
-
-.comment p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #555;
-}
-
-.comment small {
-    color: #aaa;
+@media (max-width: 480px) {
+    .recommendation-item {
+        width: 150px; /* Further adjustment for mobile screens */
+    }
 }

@@ -5,25 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Sharing Platform</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"> <!-- Google Fonts -->
     <style>
-        /* Add the slider CSS here */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Main Image Slider */
         .slider {
             position: relative;
             max-width: 100%;
             overflow: hidden;
-            margin: 20px; /* Adjusted margin for both sliders */
+            margin: 20px;
         }
 
         .slider-wrapper {
             display: flex;
             transition: transform 0.5s ease;
-            width: 100%; /* Ensures the slider takes the full width */
+            width: 100%;
         }
 
         .slider-image {
-            min-width: 100%; /* Each image takes the full width of the slider */
-            height: 500px; /* Set a fixed height for the images */
-            object-fit: cover; /* Ensures the images cover the entire area without distortion */
+            min-width: 100%;
+            height: 500px;
+            object-fit: cover;
         }
 
         button.prev, button.next {
@@ -45,21 +53,36 @@
             right: 10px;
         }
 
+        /* Recipe Grid */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 items per row */
+            gap: 10px; /* Space between items */
+            margin: 20px;
+        }
+
         .recipe-item {
-            display: inline-block;
-            margin: 10px;
             text-align: center;
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .recipe-item img {
-            width: 200px;
-            height: auto;
+            width: 100%; /* Full width of the item */
+            height: 200px; /* Fixed height for uniformity */
+            object-fit: cover; /* Cover to maintain aspect ratio */
+        }
+
+        h2 {
+            margin: 20px;
         }
     </style>
 </head>
 <body>
 
-<!-- Image Slider -->
+<!-- Main Image Slider -->
 <div class="slider">
     <div class="slider-wrapper">
         <img src="../images/home.jpg" alt="Image 1" class="slider-image">
@@ -73,13 +96,8 @@
 
 <!-- Most Popular Recipes -->
 <h2>Most Popular Recipes</h2>
-<div class="slider" id="popular-recipes-slider">
-    <div class="slider-wrapper" id="popular-recipes-wrapper"></div>
-    <button class="prev" onclick="movePopularSlide(-1)">&#10094;</button>
-    <button class="next" onclick="movePopularSlide(1)">&#10095;</button>
-</div>
+<div class="recipe-grid" id="popular-recipes-grid"></div>
 
-<!-- Add your script here -->
 <script>
     // Main image slider functionality
     let currentSlide = 0;
@@ -100,34 +118,15 @@
         sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
-    setInterval(() => moveSlide(1), 5000);
-
-    // Popular recipes slider functionality
-    let currentPopularSlide = 0;
-
-    function movePopularSlide(direction) {
-        const popularSlides = document.querySelectorAll('.recipe-item');
-        const totalPopularSlides = popularSlides.length;
-
-        currentPopularSlide += direction;
-
-        if (currentPopularSlide >= totalPopularSlides) {
-            currentPopularSlide = 0;
-        } else if (currentPopularSlide < 0) {
-            currentPopularSlide = totalPopularSlides - 1;
-        }
-
-        const popularSliderWrapper = document.getElementById('popular-recipes-wrapper');
-        popularSliderWrapper.style.transform = `translateX(-${currentPopularSlide * 100}%)`;
-    }
+    setInterval(() => moveSlide(1), 5000); // Auto-slide every 5 seconds
 
     // Fetch popular recipes when the page loads
-    fetch('../pages/fetch_popular_recipe.php')
+    fetch('../pages/fetch_popular_recipe.php?limit=10') // Adjust the PHP script to limit to 10 recipes
         .then(response => response.json())
         .then(data => {
-            const recipesWrapper = document.getElementById('popular-recipes-wrapper');
+            const recipesGrid = document.getElementById('popular-recipes-grid');
             if (data.length === 0) {
-                recipesWrapper.innerHTML = '<p>No popular recipes found.</p>';
+                recipesGrid.innerHTML = '<p>No popular recipes found.</p>';
                 return;
             }
             data.forEach(recipe => {
@@ -151,10 +150,11 @@
                         <p>Reviews: ${recipe.total_reviews}</p>
                     </a>
                 `;
-                recipesWrapper.appendChild(recipeItem);
+                recipesGrid.appendChild(recipeItem);
             });
         })
         .catch(error => console.error('Error fetching popular recipes:', error));
+
 </script>
 
 </body>
