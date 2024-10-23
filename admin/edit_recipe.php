@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="form-container">
-        <h1>Add a New Recipe</h1>
+        <h1>Edit Recipe</h1>
         <form action="add_recipe.php" method="POST" enctype="multipart/form-data">
             <label for="recipe_name">Recipe Name:</label>
             <input type="text" id="recipe_name" name="recipe_name" required>
@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 ?>
             </select>
-            <input type="submit" value="Add Recipe">
+            <input type="submit" value="submit">
         </form>
     </div>
 </body>

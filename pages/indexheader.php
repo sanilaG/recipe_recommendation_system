@@ -20,11 +20,11 @@
                 </form>
             <nav>
                 <ul>
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="../users/index.php">Home</a></li>
                     <li><a href="recipes.php">All&nbsp;Recipes</a></li>
                     <li><a href="categories.php">Categories</a></li>
                     <li><a href="aboutus.php">About&nbsp;Us</a></li>
-                    <li><a href="login.php">Login</a></li>
+                    <li><a href="../users/login.php">Login</a></li>
                 </ul>
             </nav>
         </div>

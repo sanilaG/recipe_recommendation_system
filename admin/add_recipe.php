@@ -1,6 +1,8 @@
 <?php
 include '../includes/db.php'; // Ensure this file connects to your database
 
+$recipe_added = false; // Variable to track if the recipe was added
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $recipe_name = $_POST['recipe_name'];
     $description = $_POST['description'];
@@ -21,17 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Move the uploaded file to the uploads directory
     if (move_uploaded_file($image['tmp_name'], $image_path)) {
         // Insert recipe into the database
-        $query = "INSERT INTO recipes (recipe_name, ingredient, instructions, image_url, category_id) VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO recipes (recipe_name, description, ingredients, instructions, image_url, category_id) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('sssssi', $recipe_name, $description, $ingredients, $instructions, $image_path, $category_id);
-        
-        if ($stmt->execute()) {
-            echo 'Recipe added successfully!';
-        } else {
-            echo 'Error: ' . $stmt->error;
+
+        if ($stmt) {
+            $stmt->bind_param('sssssi', $recipe_name, $description, $ingredients, $instructions, $image_path, $category_id);
+            if ($stmt->execute()) {
+                $recipe_added = true; // Recipe was successfully added
+            }
         }
-    } else {
-        echo 'Error uploading image.';
     }
 }
 ?>
@@ -119,6 +119,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: #0056b3;
         }
     </style>
+    <script>
+        // Function to show the success popup
+        function showSuccessMessage() {
+            alert("Recipe added successfully!");
+        }
+    </script>
 </head>
 <body>
     <div class="form-container">
@@ -155,5 +161,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit" value="Add Recipe">
         </form>
     </div>
+
+    <?php if ($recipe_added): ?>
+    <script>
+        // Show success popup if recipe was added
+        showSuccessMessage();
+    </script>
+    <?php endif; ?>
 </body>
 </html>

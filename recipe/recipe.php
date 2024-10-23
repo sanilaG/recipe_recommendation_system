@@ -1,5 +1,10 @@
-<?php include 'indexheader.php'; ?>
-<?php
+<?php 
+include 'indexheader.php'; 
+
+// Check if the session has already been started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); // Start session only if not already started
+}
 
 $host = 'localhost';
 $dbName = 'recipe_recommendation';
@@ -33,8 +38,10 @@ if ($recipeId) {
     $commentsStmt->execute();
     $comments = $commentsStmt->fetchAll(PDO::FETCH_ASSOC);
     
-    $userId = $_SESSION['user_id'] ?? 1;
+    // Check if user is logged in
+    $userId = $_SESSION['user_id'] ?? null;
 
+    // Get recipe recommendations
     $recommendations = getHybridRecommendations($userId, $recipeId, $pdo);
     $allRecipes = getAllRecipes($pdo);
 } else {
@@ -50,46 +57,46 @@ if ($recipeId) {
     <title><?php echo htmlspecialchars($recipe['recipe_name']); ?></title>
     <link rel="stylesheet" href="../css/recipe.css">
 </head>
-<style>/* Grid container for recommendation items */
+<style>
+/* Grid container for recommendation items */
 .recommendation-grid {
     display: flex;
-    flex-direction: row; /* Ensure items are laid out horizontally */
-    gap: 20px; /* Space between the items */
-    overflow-x: auto; /* Allow horizontal scrolling */
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
     padding: 10px;
-    white-space: nowrap; /* Prevent line wrapping */
+    white-space: nowrap;
 }
 
 /* Each item in the grid */
 .recommendation-item {
-    flex: 0 0 auto; /* Prevent items from shrinking or growing */
-    width: 250px; /* Set a fixed width for each item */
+    flex: 0 0 auto;
+    width: 250px;
     text-align: center;
     background: white;
     border: 1px solid #eee;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    display: inline-block; /* Inline block to prevent wrapping */
+    display: inline-block;
 }
 
-/* Ensure image within recommendation item is responsive */
+/* Image styling */
 .recommendation-item img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .recommendation-item {
-        width: 200px; /* Smaller width on smaller screens */
+        width: 200px;
     }
 }
 
 @media (max-width: 480px) {
     .recommendation-item {
-        width: 150px; /* Further adjustment for mobile screens */
+        width: 150px;
     }
 }
 </style>
@@ -113,21 +120,27 @@ if ($recipeId) {
         (<?php echo $recipe['total_ratings']; ?> ratings)
     </h3>
 
-    <form method="POST" action="rate_comment.php">
-        <input type="hidden" name="recipe_id" value="<?php echo $recipeId; ?>">
-        
-        <div class="star-rating">
-            <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
-            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-        </div>
+    <?php if ($userId): ?>
+        <!-- Display the rating and comment form if the user is logged in -->
+        <form method="POST" action="rate_comment.php">
+            <input type="hidden" name="recipe_id" value="<?php echo $recipeId; ?>">
+            
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            </div>
 
-        <label for="comment">Leave a comment:</label>
-        <textarea name="comment" id="comment" required></textarea>
-        <button type="submit">Submit</button>
-    </form>
+            <label for="comment">Leave a comment:</label>
+            <textarea name="comment" id="comment" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    <?php else: ?>
+        <!-- Display a message prompting the user to log in -->
+        <p>Please <a href="../users/login.php">log in</a> to leave a rating or comment.</p>
+    <?php endif; ?>
 
     <h2>User Comments</h2>
     <?php if (count($comments) > 0): ?>
@@ -150,6 +163,7 @@ if ($recipeId) {
         <p>No comments yet.</p>
     <?php endif; ?>
 </div>
+
 <div class="recommendations">
     <h2>You Might Also Like</h2>
     <div class="recommendation-grid">

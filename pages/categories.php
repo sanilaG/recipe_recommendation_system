@@ -57,7 +57,12 @@ $result = $conn->query($query);
     </style>
 </head>
 <body>
+    <br>
+    <br>
     <h1 style="text-align: center;">Categories</h1>
+<br>
+<br>
+
     <div class="container">
         <?php
         if ($result->num_rows > 0) {

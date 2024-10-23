@@ -9,9 +9,8 @@ if ($_SESSION['role'] !== 'admin') {
 }
 
 // Fetch all users from the database
-$query = "SELECT id, email FROM users";
+$query = "SELECT id, email, profile_picture FROM users"; // Assuming you want to show profile pictures as well
 $result = $conn->query($query);
-
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +28,8 @@ $result = $conn->query($query);
             padding: 0;
         }
         .container {
-            width: 90%;
-            margin: 0 auto;
+            width: 80%;
+            margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
@@ -50,36 +49,23 @@ $result = $conn->query($query);
             border: 1px solid #ddd;
         }
         th, td {
-            padding: 12px 15px;
+            padding: 12px;
             text-align: left;
         }
         th {
             background-color: #4CAF50;
             color: white;
-            text-transform: uppercase;
-            font-size: 14px;
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #ddd;
         }
-        td a {
-            padding: 5px 10px;
-            text-decoration: none;
-            color: #fff;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-        .edit-btn {
-            background-color: #3498db;
-        }
-        .delete-btn {
-            background-color: #e74c3c;
-        }
-        td a:hover {
-            opacity: 0.8;
+        td img {
+            width: 50px; /* Set the desired width for the profile picture */
+            height: 50px; /* Set the desired height for the profile picture */
+            border-radius: 50%; /* Make the image circular */
         }
         .add-user-btn {
             display: block;
@@ -94,6 +80,18 @@ $result = $conn->query($query);
         }
         .add-user-btn:hover {
             background-color: #45a049;
+        }
+        .edit-btn, .delete-btn {
+            padding: 5px 10px;
+            color: white;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        .edit-btn {
+            background-color: #3498db;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
         }
     </style>
 </head>
@@ -115,7 +113,8 @@ $result = $conn->query($query);
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['email'] . "</td>";
+                    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+        
                     echo "<td>
                             <a href='edit_user.php?id=" . $row['id'] . "' class='edit-btn'>Edit</a>
                             <a href='delete_user.php?id=" . $row['id'] . "' class='delete-btn' onclick='return confirm(\"Are you sure?\")'>Delete</a>
@@ -126,5 +125,13 @@ $result = $conn->query($query);
             </tbody>
         </table>
     </div>
+
+    <?php
+    // Check if the user_added session variable is set
+    if (isset($_SESSION['user_added']) && $_SESSION['user_added'] === true) {
+        echo "<script>alert('User added successfully!');</script>";
+        unset($_SESSION['user_added']); // Unset the session variable after displaying the message
+    }
+    ?>
 </body>
 </html>
