@@ -25,7 +25,7 @@
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="../pages/recipes.php">All&nbsp;Recipes</a></li>
-                <li><a href="../admin/add_recipe.php">Add recipe</a></li>
+                
                 <li><a href="../pages/categories.php">Categories</a></li>
                 <li><a href="aboutus.php">About&nbsp;Us</a></li>
                 <?php if (isset($_SESSION['user_id'])): ?>

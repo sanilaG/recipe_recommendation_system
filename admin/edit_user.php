@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         $_SESSION['user_updated'] = true; // Set session variable to indicate success
-        header("Location: manage_user.php");
+        header("Location: manage_users.php");
         exit;
     } else {
         echo "Error updating user.";

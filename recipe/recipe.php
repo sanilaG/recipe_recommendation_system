@@ -58,6 +58,31 @@ if ($recipeId) {
     <link rel="stylesheet" href="../css/recipe.css">
 </head>
 <style>
+/* Star Rating Styling */
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    font-size: 2em;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ddd;
+    cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #ffca08;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffca08;
+}
+
 /* Grid container for recommendation items */
 .recommendation-grid {
     display: flex;
@@ -88,17 +113,20 @@ if ($recipeId) {
     border-radius: 8px;
 }
 
+/* Responsive for medium screens */
 @media (max-width: 768px) {
     .recommendation-item {
         width: 200px;
     }
 }
 
+/* Responsive for small screens */
 @media (max-width: 480px) {
     .recommendation-item {
         width: 150px;
     }
 }
+
 </style>
 <body>
 
@@ -126,13 +154,12 @@ if ($recipeId) {
             <input type="hidden" name="recipe_id" value="<?php echo $recipeId; ?>">
             
             <div class="star-rating">
-                <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
-                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-            </div>
-
+    <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+</div>
             <label for="comment">Leave a comment:</label>
             <textarea name="comment" id="comment" required></textarea>
             <button type="submit">Submit</button>

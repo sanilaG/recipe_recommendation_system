@@ -25,6 +25,6 @@ if (isset($_GET['id'])) {
 }
 
 // Redirect back to manage_user.php
-header("Location: manage_user.php");
+header("Location: manage_users.php");
 exit;
 ?>
